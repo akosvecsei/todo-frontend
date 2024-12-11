@@ -6,14 +6,21 @@ This template sets up a minimal React + TypeScript project using Vite with Hot M
 
 To get started with the project, follow these steps:
 
-1. **Install dependencies**:
+1. **Navigate to the project folder**:
 
-   Open your terminal and run the following command to install all required dependencies:
+   In your terminal, navigate to the project directory:
+
+   ```bash
+   cd todo
+
+2. **Install dependencies**:
+
+   Run the following command to install all required dependencies:
 
    ```bash
    npm install
 
-2. **Start the development server**:
+3. **Start the development server**:
 
    Once the dependencies are installed, run the following command to start the development server:
 
