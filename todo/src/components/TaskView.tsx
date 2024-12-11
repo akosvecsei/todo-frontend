@@ -8,7 +8,7 @@ interface TaskProps {
 }
 
 const TaskView: React.FC<TaskProps> = ({ task, onDelete }) => {
-  const { deleteTask } = useDeleteTask();
+  const { mutate: deleteTask } = useDeleteTask();
   const { toggleTaskCompletion } = useToggleTask();
   const [taskState, setTaskState] = useState<TaskType>(task);
 
@@ -20,17 +20,19 @@ const TaskView: React.FC<TaskProps> = ({ task, onDelete }) => {
   };
 
   const handleDelete = async () => {
-    const result = await deleteTask(taskState.id);
-    if (result) {
+    try {
+      await deleteTask(taskState.id);
       onDelete(taskState.id);
+    } catch (error) {
+      console.error('Error deleting task:', error);
     }
   };
 
   return (
-    <div className="min-w-[240px] bg-gray-300 dark:bg-[#535353] text-black dark:text-white rounded-xl flex items-center justify-between p-3">
+    <div className="min-w-[240px] bg-white text-black flex items-center justify-between py-3">
       <div className="flex items-center justify-start gap-5">
         <div
-          className="bg-transparent border-[1px] border-gray-500 dark:border-white border-solid h-[30px] w-[30px] rounded-lg flex justify-center items-center cursor-pointer"
+          className="bg-transparent border-[1px] border-gray-500 border-solid h-[30px] w-[30px] rounded-md flex justify-center items-center cursor-pointer"
           onClick={handleToggle}
         >
           {taskState.iscompleted && (
